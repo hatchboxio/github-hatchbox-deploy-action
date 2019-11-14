@@ -11,6 +11,7 @@ inputs:
   endpoint:
     description: 'The deploy submission endpoint. Only used for testing'
     required: true
+    default: "https://api.honeybadger.io/v1/deploys"
 
 runs:
   using: 'docker'
