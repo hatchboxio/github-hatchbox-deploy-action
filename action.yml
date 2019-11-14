@@ -1,0 +1,11 @@
+name: 'Honeybadger Deploy Action'
+description: 'Send deployment notifications to the Honeybadger API'
+inputs:
+  api-key:
+    description: 'The Honeybadger project API key'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.api-key }}
