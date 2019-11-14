@@ -10,7 +10,7 @@ inputs:
     default: 'production'
   endpoint:
     description: 'The deploy submission endpoint. Only used for testing'
-    required: true
+    required: false
     default: "https://api.honeybadger.io/v1/deploys"
 
 runs:

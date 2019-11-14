@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-curl \
+curl -sS \
   $INPUT_ENDPOINT \
   -F api_key=$INPUT_API_KEY \
   -F deploy[environment]=$INPUT_ENVIRONMENT \
