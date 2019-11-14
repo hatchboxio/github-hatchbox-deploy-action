@@ -1,11 +1,21 @@
 name: 'Honeybadger Deploy Action'
 description: 'Send deployment notifications to the Honeybadger API'
 inputs:
-  api-key:
+  api_key:
     description: 'The Honeybadger project API key'
     required: true
+  environment:
+    description: 'The deployment environment. Defaults to production.'
+    required: false
+    default: 'production'
+  endpoint:
+    description: 'The deploy submission endpoint. Only used for testing'
+    required: true
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.api-key }}
+    - ${{ inputs.api_key }}
+    - ${{ inputs.enviornment }}
+    - ${{ inputs.endpoint }}
