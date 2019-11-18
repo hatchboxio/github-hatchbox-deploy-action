@@ -1,5 +1,8 @@
 name: 'Honeybadger Deploy Action'
 description: 'Send deployment notifications to the Honeybadger API'
+branding:
+  icon: 'globe'
+  color: 'orange'
 inputs:
   api_key:
     description: 'The Honeybadger project API key'
