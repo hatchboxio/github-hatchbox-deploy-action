@@ -1,25 +1,16 @@
-name: 'Honeybadger Deploy Action'
-description: 'Send deployment notifications to the Honeybadger API'
+name: 'Hatchbox Deploy Action'
+description: 'Send deployment notifications to the Hatchbox API'
 branding:
   icon: 'globe'
-  color: 'orange'
+  color: 'red'
 inputs:
-  api_key:
-    description: 'The Honeybadger project API key'
+  deploy_key:
+    description: 'The Hatchbox project deploy key'
     required: true
-  environment:
-    description: 'The deployment environment. Defaults to production.'
-    required: false
-    default: 'production'
-  endpoint:
-    description: 'The deploy submission endpoint. Only used for testing'
-    required: false
-    default: "https://api.honeybadger.io/v1/deploys"
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.api_key }}
-    - ${{ inputs.enviornment }}
-    - ${{ inputs.endpoint }}
+
+    - ${{ inputs.deploy_key }}
