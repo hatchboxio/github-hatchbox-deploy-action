@@ -7,10 +7,14 @@ inputs:
   deploy_key:
     description: 'The Hatchbox project deploy key'
     required: true
+  branch:
+    description: 'The branch that needs to be deployed'
+    required: false
+    default: 'master'
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-
     - ${{ inputs.deploy_key }}
+    - ${{ inputs.branch }}
