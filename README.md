@@ -9,7 +9,7 @@ Use these inputs to customise the action.
 Input Name | Default | Required? | Description
 ------------ | ------------- | ------------ | -------------
 deploy_key | N/A | Y | The Hatchbox project deploy key
-deploy_key | master | N | The branch that needs to be deployed
+branch | master | N | The branch that needs to be deployed
 
 #### Example
 
