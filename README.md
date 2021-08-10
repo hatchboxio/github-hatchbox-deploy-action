@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: lorismaz/github-hatchbox-deploy-action@v1
+    - uses: hatchboxio/github-hatchbox-deploy-action@v1
       with:
         deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
         branch: master
