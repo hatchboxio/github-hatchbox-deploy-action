@@ -12,7 +12,7 @@ result=$(curl https://$url_start.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_
 
 echo "$result"
 
-if [[ $(expr match "result" '"\"success\":true"') != 0 ]]; then
+if [[ $(expr match "$result" '"\"success\":true"') != 0 ]]; then
   echo "Success"
   exit 0
 else
