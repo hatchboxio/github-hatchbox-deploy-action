@@ -1,14 +1,14 @@
 #!/bin/sh -l
 
 if [[ $INPUT_CLASSIC == "true" ]]; then
-  url_start="classic"
+  subdomain="classic"
 else
-  url_start="www"
+  subdomain="app"
 fi
 
-echo "https://$url_start.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH"
+echo "https://$subdomain.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH"
 
-result=$(curl https://$url_start.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH)
+result=$(curl https://$subdomain.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH)
 
 echo "$result"
 
