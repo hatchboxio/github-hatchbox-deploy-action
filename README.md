@@ -8,16 +8,26 @@ Use these inputs to customise the action.
 
 Input Name | Default | Required? | Description
 ------------ | ------------- | ------------ | -------------
-deploy_key | N/A | Y | The Hatchbox project deploy key from 
-branch | master | N | The branch that needs to be deployed
-classic | false | N | If Hatchbox classic is used or not
+deploy_key | N/A | Y | The Hatchbox project deploy key 
+classic | false | N | If Hatchbox Classic is used or not
+branch | master | N | (Hatchbox Classic Only) The branch to be deployed
 
-You can find the "deploy key" in the URL on the App's Deploy tab in Hatchbox. For example, it would show:
+
+#### Deploy Key
+Set HATCHBOX_DEPLOY_KEY to XYZ in your GitHub Secrets.
+
+**Hatchbox v2**
+You can find the "deploy key" in the URL on the App's Repository tab in Hatchbox v2. For example, it would show:
+
+```
+https://app.hatchbox.io/webhooks/deployments/XYZ?latest=true
+```
+
+**Hatchbox Classic**
+You can find the "deploy key" in the URL on the App's Deploy tab in Hatchbox Classic. For example, it would show:
 ```
 https://www.hatchbox.io/webhooks/github/push/XYZ
 ```
-
-You'd set HATCHBOX_DEPLOY_KEY to XYZ in your GitHub Secrets.
 
 #### Example
 
