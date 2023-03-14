@@ -1,22 +1,12 @@
 #!/bin/sh -l
 
+set -x 
+
 if [[ $INPUT_CLASSIC == "true" ]]; then
-  subdomain="classic"
+  url="https://classic.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH"
 else
-  subdomain="app"
+  url="https://app.hatchbox.io/webhooks/deployments/$INPUT_DEPLOY_KEY?latest=true"
 fi
 
-echo "https://$subdomain.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH"
-
-result=$(curl https://$subdomain.hatchbox.io/webhooks/custom/push/$INPUT_DEPLOY_KEY?ref=refs%2Fheads%2F$INPUT_BRANCH)
-
-echo "$result"
-
-if [[ $(expr match "$result" '"\"success\":true"') != 0 ]]; then
-  echo "Success"
-  exit 0
-else
-  echo "Failed"
-  exit 1
-fi
-
+curl --fail $url
+echo "Success"
