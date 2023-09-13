@@ -47,6 +47,5 @@ jobs:
     - uses: hatchboxio/github-hatchbox-deploy-action@v1
       with:
         deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
-        branch: master
-        classic: false
+        branch: main
 ```
