@@ -30,39 +30,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: hatchboxio/github-hatchbox-deploy-action@v1
+    - uses: actions/checkout@v4
+    - uses: hatchboxio/github-hatchbox-deploy-action@v2
       with:
         deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
-```
-
-## Hatchbox Classic
-
-**Hatchbox Classic**
-
-You can find the "deploy key" in the URL on the App's Deploy tab in Hatchbox Classic. For example, it would show:
-```
-https://www.hatchbox.io/webhooks/github/push/XYZ
-```
-
-#### Example
-
-```yaml
-# .github/workflows/deploy.yml
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: hatchboxio/github-hatchbox-deploy-action@v1
-      with:
-        deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
-        classic: "true"
-        branch: "main"
 ```
