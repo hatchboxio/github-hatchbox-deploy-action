@@ -1,6 +1,8 @@
-# Hatchbox Notify Deploy Action
+# Hatchbox.io Deploy Action
 
-Sending deployment notifications to Hatchbox.
+Trigger Hatchbox.io app deployments.
+
+For Hatchbox Classic users, see [v1]().
 
 #### Inputs
 
@@ -8,21 +10,33 @@ Use these inputs to customise the action.
 
 Input Name | Default | Required? | Description
 ------------ | ------------- | ------------ | -------------
-deploy_key | N/A | Y | The Hatchbox project deploy key 
-classic | false | N | If Hatchbox Classic is used or not
-branch | master | N | (Hatchbox Classic Only) The branch to be deployed
+deploy_key | N/A | Y | Your Hatchbox.io app's Deploy Key.
+sha | ${{ github.sha }} | N | The commit sha to deploy. Default's to the sha that triggered the GitHub Action.
 
+## Usage
 
-#### Deploy Key
-Set HATCHBOX_DEPLOY_KEY to XYZ in your GitHub Secrets.
+Set `HATCHBOX_DEPLOY_KEY` in your GitHub Secrets. You can find the Deploy Key in the URL on the App's Repository tab in Hatchbox.io.
 
-**Hatchbox v2**
+#### Example
 
-You can find the "deploy key" in the URL on the App's Repository tab in Hatchbox v2. For example, it would show:
+```yaml
+# .github/workflows/deploy.yml
+on:
+  push:
+    branches:
+      - main
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: hatchboxio/github-hatchbox-deploy-action@v1
+      with:
+        deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
 ```
-https://app.hatchbox.io/webhooks/deployments/XYZ?latest=true
-```
+
+## Hatchbox Classic
 
 **Hatchbox Classic**
 
@@ -34,10 +48,12 @@ https://www.hatchbox.io/webhooks/github/push/XYZ
 #### Example
 
 ```yaml
+# .github/workflows/deploy.yml
+
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -47,5 +63,6 @@ jobs:
     - uses: hatchboxio/github-hatchbox-deploy-action@v1
       with:
         deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
-        branch: main
+        classic: "true"
+        branch: "main"
 ```
