@@ -5,7 +5,7 @@ branding:
   color: 'red'
 inputs:
   deploy_key:
-    description: 'Your Hatchbox.io app's Deploy Key.'
+    description: 'Your Hatchbox.io app Deploy Key.'
     required: true
   sha:
     description: 'The commit sha to be deployed.'
