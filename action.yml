@@ -1,5 +1,5 @@
-name: 'Hatchbox Deploy Action'
-description: 'Send deployment notifications to the Hatchbox API'
+name: 'Hatchbox.io Deploy Action'
+description: 'Send deployment notifications to the Hatchbox.io API'
 branding:
   icon: 'globe'
   color: 'red'
@@ -11,6 +11,9 @@ inputs:
     description: 'The commit sha to be deployed.'
     required: false
     default: ${{ github.sha }}
+outputs:
+  response:
+    description: "JSON response for the Hatchbox.io deployment"
 
 runs:
   using: 'docker'
