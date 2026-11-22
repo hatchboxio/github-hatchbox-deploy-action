@@ -36,7 +36,6 @@ jobs:
       group: hatchbox-deploy-${{ github.ref }}
       cancel-in-progress: true
     steps:
-    - uses: actions/checkout@v4
     - uses: hatchboxio/github-hatchbox-deploy-action@v2
       with:
         deploy_key: ${{ secrets.HATCHBOX_DEPLOY_KEY }}
