@@ -19,22 +19,27 @@ while :; do
   status=$(curl -sS -X POST -o /tmp/response -w '%{http_code}' --connect-timeout 10 --max-time 30 "$url") || status=000
 
   case "$status" in
-    2*)
-      echo "response=$(cat /tmp/response)" >> "$GITHUB_OUTPUT"
-      echo "Deployment has started on Hatchbox.io"
-      exit 0
-      ;;
-    000|5*)
-      if [ "$(date +%s)" -lt "$deadline" ]; then
-        echo "Hatchbox.io is unavailable (HTTP $status), retrying in 30 seconds"
-        sleep 30
-        continue
-      fi
-      echo "Giving up after $retry_minutes minutes"
-      ;;
+    000|5*) ;;
+    *) break ;;
   esac
 
-  echo "Hatchbox.io returned HTTP $status"
-  cat /tmp/response 2>/dev/null && echo
-  exit 1
+  if [ "$(date +%s)" -ge "$deadline" ]; then
+    echo "Giving up after $retry_minutes minutes"
+    break
+  fi
+
+  echo "Hatchbox.io is unavailable (HTTP $status), retrying in 30 seconds"
+  sleep 30
 done
+
+case "$status" in
+  2*)
+    echo "response=$(cat /tmp/response)" >> "$GITHUB_OUTPUT"
+    echo "Deployment has started on Hatchbox.io"
+    ;;
+  *)
+    echo "Hatchbox.io returned HTTP $status"
+    cat /tmp/response 2>/dev/null && echo
+    exit 1
+    ;;
+esac
