@@ -12,6 +12,7 @@ Input Name | Default | Required? | Description
 ------------ | ------------- | ------------ | -------------
 deploy_key | N/A | Y | Your Hatchbox.io app's Deploy Key.
 sha | ${{ github.sha }} | N | The commit sha to deploy. Default's to the sha that triggered the GitHub Action.
+retry_minutes | 10 | N | How long to keep retrying while Hatchbox.io is unavailable. Server errors and failed connections are retried every 30 seconds; other errors, like an invalid deploy key, fail right away.
 
 ## Usage
 

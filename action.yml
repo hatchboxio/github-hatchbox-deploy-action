@@ -11,6 +11,10 @@ inputs:
     description: 'The commit sha to be deployed.'
     required: false
     default: ${{ github.sha }}
+  retry_minutes:
+    description: 'How long to keep retrying while Hatchbox.io is unavailable (server errors or no connection).'
+    required: false
+    default: '10'
 outputs:
   response:
     description: "JSON response for the Hatchbox.io deployment"

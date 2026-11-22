@@ -1,3 +1,8 @@
+### v2.1
+
+* Retry server errors and failed connections for up to `retry_minutes` (default 10) so deploys survive Hatchbox.io maintenance
+* Stop echoing the request URL, which contains the deploy key, to the log
+
 ### v2
 
 * Drop Hatchbox Classic support
