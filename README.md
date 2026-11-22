@@ -28,8 +28,13 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    # A newer push cancels an older deploy that's still waiting, so retries
+    # during a Hatchbox.io outage can't deploy an older commit last
+    concurrency:
+      group: hatchbox-deploy-${{ github.ref }}
+      cancel-in-progress: true
     steps:
     - uses: actions/checkout@v4
     - uses: hatchboxio/github-hatchbox-deploy-action@v2
